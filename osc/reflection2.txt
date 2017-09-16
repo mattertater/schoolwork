@@ -1,0 +1,55 @@
+Matt McDade
+
+Operation Systems Concepts: Reflection 2
+
+1. I learned what a PCB and footprint was. I knew how processes were ran and that
+ 
+	they were allocated space in RAM, but I learned the actual structure and 
+
+	how the information is packed inside the PCB & footprint
+
+2.The cycle of a process was really helpful in understanding how the processor 
+	runs every running process in a cycle. It makes sense
+ that it can't run
+	things at the same time unless it has multiple
+	cores, so this lifecycle
+	of a process is a great explanation for
+	how everything gets done so quickly.
+
+3. Protecting address space- the two ways the processor does this is with the
+ & limit 
+	registers and checks, and relocatable addresses. This helped 
+me understand
+	how information is protected from being written over
+and also taken by other 
+	processes without permission in RAM
+
+4. Synchronization or processes is a very important concept that all 
+processors obey
+	to some degree. It helps organize all the processes and avoid them stepping 
+	over each others toes;
+	they all work together and share necessary data, 
+	and don't run ahead if another process needs to be ran first. They're
+
+	all very nice to each other
+
+5. Going back a little bit - I have used different operating systems
+ and understood 
+	(in an abracted way) how they worked. Getting
+ to know them on a deeper level
+	is really interesting. Seeing
+ everything come together, concepts I'm
+	familiar with get a 
+deeper meaning and attach themselves to underlying
+	principles
+ which make sense when explained, but were never necessary to 
+
+	understand to use and know my way around an operating system. 
+I'm excited
+	to see where this class goes in terms of what other
+ dots can be connected 
+	for me to deeply understand operating systems.
+ Dr. Sastry is doing a great 
+	job so far engaging the class and it's 
+definitely my most looked-forward 
+	to class of the week. 
