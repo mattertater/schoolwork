@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/mystack.h
+iostream
+-
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/towerofhanoi.cpp
+iostream
+-
+towers.h
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/towers.h
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/towers.cpp
+iostream
+-
+cmath
+-
+towers.h
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/towers.h
+mystack.h
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/mystack.h
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/towers.h
+mystack.h
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project2/mystack.h
+

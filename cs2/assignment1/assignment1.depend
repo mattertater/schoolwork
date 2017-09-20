@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1485834563 source:c:\users\matt\desktop\ayy\programming\cs2\assignment1\main.cpp
+	<iostream>
+	<memory>
+	<algorithm>
+	"deleteRepeats.hpp"
+	"deleteRepeats.cpp"
+
+1485834562 c:\users\matt\desktop\ayy\programming\cs2\assignment1\deleterepeats.hpp
+
+1485834062 c:\users\matt\desktop\ayy\programming\cs2\assignment1\deleterepeats.cpp
+	"deleteRepeats.hpp"
+
+1485830312 source:c:\users\matt\desktop\ayy\programming\cs2\assignment1\deleterepeats.c
+

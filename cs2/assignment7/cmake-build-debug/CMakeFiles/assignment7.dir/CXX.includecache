@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment7/main.cpp
+iostream
+-
+map
+-
+fstream
+-
+iomanip
+-
+

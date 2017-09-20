@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project1/rational.hpp
+cstdlib
+-
+iosfwd
+-
+iostream
+-
+stdlib.h
+-
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project1/test_rational.cpp
+string
+-
+iostream
+-
+iomanip
+-
+unistd.h
+-
+rational.hpp
+C:/Users/Matt/Desktop/ayy/Programming/cs2/project1/rational.hpp
+

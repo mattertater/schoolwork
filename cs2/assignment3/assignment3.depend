@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1487044947 source:c:\users\matt\desktop\ayy\programming\cs2\assignment3\main.cpp
+	<iostream>
+	<stdexcept>
+	"Rectangle.hpp"
+
+1487046520 c:\users\matt\desktop\ayy\programming\cs2\assignment3\rectangle.hpp
+	<cmath>
+

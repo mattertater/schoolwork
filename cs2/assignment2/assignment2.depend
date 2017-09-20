@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1486439341 source:c:\users\matt\desktop\ayy\programming\cs2\assignment22\main.cpp
+	"Tax.cpp"
+
+1486441212 c:\users\matt\desktop\ayy\programming\cs2\assignment22\tax.cpp
+	"TaxConstants.hpp"
+	"Tax.hpp"
+	<iostream>
+
+1486419291 c:\users\matt\desktop\ayy\programming\cs2\assignment22\taxconstants.hpp
+
+1486440152 c:\users\matt\desktop\ayy\programming\cs2\assignment22\tax.hpp
+	"TaxDataType.hpp"
+
+1486420840 c:\users\matt\desktop\ayy\programming\cs2\assignment22\taxdatatype.hpp
+

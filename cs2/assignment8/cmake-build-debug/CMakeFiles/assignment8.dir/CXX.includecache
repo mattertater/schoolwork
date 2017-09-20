@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment8/tree.hpp
+iostream
+-
+treenode.hpp
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment8/treenode.hpp
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment8/tree_main.cpp
+iostream
+-
+cstdlib
+-
+ctime
+-
+tree.hpp
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment8/tree.hpp
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment8/treenode.hpp
+

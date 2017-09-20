@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment5/CharList.h
+
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment5/main.cpp
+iostream
+-
+CharList.h
+C:/Users/Matt/Desktop/ayy/Programming/cs2/assignment5/CharList.h
+

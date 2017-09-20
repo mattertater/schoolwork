@@ -1,0 +1,3 @@
+"C:\Program Files (x86)\JetBrains\CLion 2016.3.3\bin\cmake\bin\cmake.exe" -E remove -f CMakeFiles\donger.dir/objects.a
+C:\MinGW\bin\ar.exe cr CMakeFiles\donger.dir/objects.a @CMakeFiles\donger.dir\objects1.rsp
+C:\MinGW\bin\g++.exe     -Wl,--whole-archive CMakeFiles\donger.dir/objects.a -Wl,--no-whole-archive  -o donger.exe -Wl,--out-implib,libdonger.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\donger.dir\linklibs.rsp
