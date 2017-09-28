@@ -1,0 +1,36 @@
+Matt McDade
+2849637 mm263
+
+VERSION 1
+This original code took me a while to figure out, as I had to 
+learn a lot more about the simulator, as in how to use loads and stores for 
+floating point values. I had to figure out that a general purpose register
+was used for the base addresses or floating point loads and stores. I was
+trying to use a floating point register and it wasn't working. Other problems
+I had were integrating a similar print out system to check the values of the
+new vector. This was eventually worked out to only printing one value from the
+array to make sure it was right at a time. A CPI of 2.0 is pretty bad, and
+seeing it improve so dramatically was very cool.
+
+VERSION 2
+This code was much more well designed, and since there were only 3 loops,
+it was easy to completely unroll. With a CPI of 1.384, this code was obviously
+much more efficient than the original loop. I played around with the order
+a little bit, like moving the mul.d instructions in between the loads, to save
+a couple more cycles of stalling. Going from 27 RAW stalls down to 5 is very
+impressive, but I was unable to get rid of any more without getting rid
+of the functionality of the code. 
+
+VERSION 3
+I had to make this code a bit more substantial in terms of loop size
+to really see the effects. So, I also changed the original code and included 
+a separate code file aptly named McDadeStep1_2, which goes through the same 
+exact size of vector that version 1 did for a better comparison to the 
+speed benefits. I couldn't figure out how to properly use the registers
+to keep the size minimal, so I wrote out the basic structure of the code,
+without the actual functionality. 
+
+Overall, I learned a lot about pipeline scheduling and software pipelining,
+but apparently not enough so to actually finish part 3 of the project. I 
+understand the general structure, but for this specific application, 
+I couldn't figure out how to write it and organize all the registers. 

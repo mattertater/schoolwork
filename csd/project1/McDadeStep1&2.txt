@@ -1,0 +1,83 @@
+;--------------------------------------------------------------------------
+; Program begin at symbol main
+; Computes the infinity norm of sA+B, 
+; and prints the result to stdout.
+; MATT MCDADE 2849637  
+; STATS OF PROGRAM RUNNING IN SIMULATOR:
+;
+; 382 cycles
+; 182 instructions
+; 2.098 CPI
+; 168 RAW stalls only
+;--------------------------------------------------------------------------
+               
+	       .data       			; start of data space
+
+
+
+veclength:     .word32 12  			; number of elements in vector, a 32-bit integer.
+
+    
+                       
+						; first vector, each element is a 32-bit integer.
+vectorAdata:   .word64  10,  5, -1, 0,   3, -257,  7,  8,  9, 0, -30, -55 
+
+                   
+						; second vector, each element is a 32-bit integer. 
+
+vectorBdata:   .word64 -4, 200,  3, 6, 100,  -88, 55, 31, -3, 0,  15,  22  
+
+
+
+scalar:        .word64 3   			; the scalar, a 32-bit integer.
+
+
+printfstring:  .asciiz "The infinity norm of sA+B is %d.\n\n"
+
+printfparams:  .space  8   			; space to store the address of the printfstring.
+
+infinitynorm:  .word 0    			; space to store result to be printed, a 64-bit integer.                              
+
+               .text       			; start of code space
+main:   
+
+               ; Use r1 as the loop counter.  Fill it with the number of data words in the vector.
+	       lw r7, scalar(r0)		; puts scalar value in r7
+	       lw r1, veclength(r0)		; set r1 to 12
+loop:						; doing everything in one loop - multiplying by scalar, adding, and checking if highest. 
+               lw r2, vectorAdata(r10)	    	; loads next value of vector into r2, (r10 is 0 to start)
+               lw r3, vectorBdata(r11)		; loads next value of vector into r3, (r11 is 0 to start)
+	; multiplying and adding  
+	       mult r2, r7			; multiplies r2 value by scalar
+	       mflo r4				; takes value from low, puts into r4
+               dadd r2, r3, r4			; puts addition of r3 and r4 back into r2
+
+	; code to find absolute value of value in register r2
+	       ori r5, r2, 0     		; copy value
+               slt r6, r2, r0    		; is value < 0 ?
+               beq r6, r0, skip 		; if its is positive, skip next instruction
+    	       sub r5, r0, r2   		; flip bits
+skip:
+	; replacing register with highest value if this one if higher. 
+	       slt r8, r9, r5			; sets r8 to 0 if r9 < r5
+	       beq r8, r0, skip2		; skips over writing to 
+	       addi r9, r5, 0	       		; makes new highest value
+skip2:
+	; do all the changing of values before looping again
+	       daddi r10, r10, 8		; increment r10 to read next value from A
+	       daddi r11, r11, 8		; increment r11 to read next value from B
+	       daddi r1, r1, -1			; decrement r1 by 1, getting through the loop. 	       
+	       bnez r1, loop			; loop back if there's still more values to check           
+        ; all done, store answer in output register.       
+	       sd r9, infinitynorm(r0)
+
+print:         
+	       daddi r5, r0, printfstring  	; r5 now holds address of string to print
+  
+	       sd r5, printfparams(r0)     	; put address first in parameters section 
+             
+	       daddi r14, r0, printfparams	; syscall 5 expects address of parameters in r14.
+   
+               syscall 5
+	; stop execution.
+               syscall 0                           

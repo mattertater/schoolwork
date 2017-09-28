@@ -1,0 +1,78 @@
+;--------------------------------------------------------------------------
+; Program begin at symbol main
+; vectorX and Y are both a size of 3 elements to keep unrolling short.
+; Computes the values of sA+B and prints the result to stdout.
+; MATT MCDADE 2849637  
+; COMPUTER SYSTEMS DESIGN PROJECT 2 PART 1 - JUST GETTING IT TO WORK
+;
+; IT WORKS!! It writes back to original vectorY spaces, and prints out the
+;   value calculated just to make sure it works. 
+; PROGRAM STATS:
+;   68 CYCLES  
+;   34 INSTRUCTIONS
+;   27 RAW stalls
+;   2.0 CPI
+;--------------------------------------------------------------------------       
+	
+	       .data       			; start of data space
+
+
+
+sizen:     .word32  3  				; number of elements in vector-1, a 32-bit integer.
+
+    
+                       
+						; first vector, each element is a 64-bit floating point number.
+vectorX:   .double  5.0,     5.0,  10.0                 
+						; second vector, each element is a 64-bit floating point number.
+
+vectorY:   .double  -2.0,  200.45,  -4.0
+
+scalara:   .double  3.0	   			; the scalar value, a 64-bit floating point number
+
+printfstring:  .asciiz "I should be 26: %d.\n"
+
+printfparams:  .space  8   			; space to store the address of the printfstring.
+result:	       .word64  0    			; space to store result to be printed, a 64-bit integer.                              
+
+
+
+               .text       			; start of code space
+main:   
+					
+	       l.d f7, scalara(r0)		; puts scalar value in f7
+	
+	; Use r1 as the loop counter.  Fill it with the number of data words in the vector.
+	       lw r1, sizen(r0)			; set r1 to 3, the size of the loop.   
+
+loop:						; doing everything in one loop - multiplying by scalara and adding vectors 
+               l.d f2, vectorX(r2)	    	; loads next value of vector into f2, (f10 is 0 to start)
+               l.d f3, vectorY(r2)		; loads next value of vector into f3, (f11 is 0 to start)
+	
+	; multiplying and adding  
+	       mul.d f2, f2, f7			; multiplies f2 value by scalara, stores back in f2
+               add.d f3, f3, f2			; puts addition of f3 and f2 back into f3 (vectorY)
+	       s.d f3, vectorY(r2)		; stores final value back into memory over the old vectorY value
+	; do all the changing of values before looping again
+	       daddi r2, r2, 8			; increment r2 to read next value from vectors X and Y
+	       daddi r1, r1, -1			; decrement r1 by 1, getting through the loop. 	       
+	       bnez r1, loop			; loop back if there's still more values to check           
+        
+	
+	; all done, store answer in output register.   
+postloop:
+	       cvt.w.d f9, f3			; converts double to int
+	       dmfc1 r9, f9			; bit-per-bit copy of f9 bits into r9
+	       sd r9, result(r0)		; storing result in r9 to result space
+	       
+print:
+	       daddi r5, r0, printfstring  	; r5 now holds address of string to print
+  
+	       sd r5, printfparams(r0)     	; put address first in parameters section 
+             
+	       daddi r14, r0, printfparams	; syscall 5 expects address of parameters in r14.
+   
+               syscall 5
+
+	; stop execution.
+               syscall 0                           

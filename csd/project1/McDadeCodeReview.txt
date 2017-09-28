@@ -1,0 +1,15 @@
+	In both versions of the code, I changed the 32 bit vectors along with the scalar to 64 bit so 
+I didn't have to sign extend anything. Starting with steps 1 and 2, I had trouble figuring out
+how to get an absolute value, until I found out how to use slt. It also helped me implement finding
+out if the current highest value was greater than the current value the loop was on. I was a little
+thrown off by the hints given in the lucture, dmul or dadd didn't work for me so I just didnt use
+them. 
+	In step 3, optimizing the code, I found out reorganizing the code was a lot more effective than
+I originally thought it would be. I moved checking the highest value to the middle of the looping code
+rather than all at the end, and moved the loop incremental things to the middle of the code too,
+both to get rid of some RAW hazards. Out of 13 RAW hazards in the code, I was able to get rid of 6
+just by moving instructions around. I added nops where there were stalls I couldn't find a way to
+fix. The cpi is higher than 1 because of some incorrect branch predictions.
+	Once I knew what I was doing writing assembly and using the simulator, this project was pretty fun
+Seeing a nicely working pipeline in action is a thing of beauty, especially when I optimized
+it myself.

@@ -1,0 +1,89 @@
+;--------------------------------------------------------------------------
+; Program begin at symbol main
+; vectorX and Y are both a size of 3 elements to keep unrolling short.
+; Computes the values of sA+B and prints the result to stdout.
+; MATT MCDADE 2849637  
+; COMPUTER SYSTEMS DESIGN PROJECT 2 PART 3 - SOFTWARE PIPELINING
+;
+; PROGRAM STATS:
+;--------------------------------------------------------------------------       
+	
+	       .data       			; start of data space
+
+
+
+sizen:     .word32  3  				; number of times to go through the loop 
+                        
+						; first vector, each element is a 64-bit floating point number.
+vectorX:   .double  5.0,     5.0,  10.0,  5.0,     5.0,  10.0, 10.0          
+						; second vector, each element is a 64-bit floating point number.
+
+vectorY:   .double  -2.0, 200.45,  -4.0, -2.0,  200.45,  -4.0, -4.0
+
+scalara:   .double  3.0	   			; the scalar value, a 64-bit floating point number
+
+printfstring:  .asciiz "I should be 26: %d.\n"
+
+printfparams:  .space  8   			; space to store the address of the printfstring.
+result:	       .word64  0    			; space to store result to be printed, a 64-bit integer.                              
+
+               .text       			; start of code space
+main:   
+					
+	       l.d f1, scalara(r0)		; puts scalar value in f1
+	
+	; Use r1 as the loop counter.  Fill it with the number of data words in the vector.
+	       lw r1, sizen(r0)			; set r1 to 3, the size of the loop.   
+
+	       daddi r2, r0, 8			; Setting r2 and r3 to 8 and 16, respectively. 
+	       daddi r3, r0, 16
+	       daddi r5, r0, 24
+	       daddi r6, r0, 
+
+preloop:					; 6 groups of instructions to be done before the loop started
+               l.d f2, vectorX(r0)	    	; 6 loads that aren't in the loop, 
+               l.d f3, vectorY(r0)		; but paired as 2, there's 3 'instructions'
+               l.d f4, vectorX(r2)
+               l.d f5, vectorY(r2)
+               l.d f6, vectorX(r3)
+               l.d f7, vectorY(r3)
+	       mult.d f2, f2, f1		; 2 mul.d's and one add.d outside of the loop
+	       mult.d f4, f4, f1
+	       add.d f3, f2, f3
+
+loop:						; doing everything in one loop - multiplying by scalara and adding vectors 
+	       s.d f3, vectorY(r4)		; r4 contains a looping variable, starting at 0 and increasing by 8
+	       add.d f5, f4, f5			; cycles of add: 2, 3, 4, 5
+	       mul.d 				; cycles of mult: 3, 4, 5, 6
+	       l.d f4, vectorX(r5)		; r5 containg a looping variable that starts at 24
+	       l.d f5, vectorY(r5)
+	       daddi r4, r4, 8			; changing all the values to cycle through the values of the vectors
+	       daddi r5, r5, 8			; 	|
+	       daddi r1, r1, -1			; 	|
+	       bnez r1, loop			; loop checker
+	
+postloop:		; tried to schedule these last bits to avoid stalling  
+	       s.d 	; cycle 5
+	       add.d 	; cycle 6
+	       mul.d 	; cycle 7
+	       s.d 	; cycle 6
+	       add.d 	; cycle 6
+	       s.d 	; cycle 7
+
+	; all done, store answer in output register.   
+postloop:
+	       cvt.w.d f9, f3			; converts double to int
+	       dmfc1 r9, f9			; bit-per-bit copy of f9 bits into r9
+	       sd r9, result(r0)		; storing result in r9 to result space
+	       
+print:
+	       daddi r5, r0, printfstring  	; r5 now holds address of string to print
+  
+	       sd r5, printfparams(r0)     	; put address first in parameters section 
+             
+	       daddi r14, r0, printfparams	; syscall 5 expects address of parameters in r14.
+   
+               syscall 5
+
+	; stop execution.
+               syscall 0                           

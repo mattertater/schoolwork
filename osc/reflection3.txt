@@ -1,0 +1,17 @@
+Matt McDade
+Operating Systems Concepts Weekly Reflection 3
+
+1. the difference between signals and events. These words both have similar purposes but different specific meanings within a computer system. Signals are more like interupts and carry information, where events have a before and after state to keep track of more information, and do other things. 
+
+2. scheduling- shortest time first. Learning about this and thinking about it in class helped me to understand why a process like executing the shortest time first would make the entire average process completion time go down. I can't wait to see what else we do with this concept in future classes. 
+
+3. priorities. Specifically, we decided in class that processes with a lower value in the three priority bits have a higher priority, and get moved forward in the FIFO queue of the processes to be ran. 
+
+4. parallel processing- talking about running multiple processes inside a processor got me thinking outside of class about how many problems could arise with 2 different processes that need data from each other. 
+
+5. time slices- this is a concept i still don't completely understand. My understanding of it so far is that all processes have different chunkc of time that they need to execute rather than a time limit for an entire process. If you could go over time slices a little more, It would really help nail it down. Thanks!
+
+
+hackathon 1. Not sure if you're looking for technologically related things or not, so I'll just share some general things since I only really organized things with the hackathon: I learned more about how to handle the judging process for next time, in terms of being a moderator and moving things along quickly when they needs to be. 
+
+hackathon 2. I learned that blindly asking people to judge or speak at opening ceremonies of an event can yield succesful results. Yes, we got turned down by some people, but really key speakers like president wilson and the VP of smuckers were very happy with the event when they saw it, and I'm glad we asked them. 

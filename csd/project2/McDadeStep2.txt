@@ -1,0 +1,74 @@
+;--------------------------------------------------------------------------
+; Program begin at symbol main
+; vectorX and Y are both a size of 3 elements to keep unrolling short.
+; Computes the values of sA+B and prints the result to stdout.
+; MATT MCDADE 2849637  
+; COMPUTER SYSTEMS DESIGN PROJECT 2 PART 2 - UNROLLING & SCHEDULING
+;
+; PROGRAM STATS:
+;   36 CYCLES  
+;   26 INSTRUCTIONS
+;   5 RAW stalls
+;   1.384 CPI
+;--------------------------------------------------------------------------       
+	
+	       .data       			; start of data space
+						; first vector, each element is a 64-bit floating point number.
+vectorX:   .double  5.0,     5.0,  10.0                 
+						; second vector, each element is a 64-bit floating point number.
+
+vectorY:   .double  -2.0,  200.45,  -4.0
+
+scalara:   .double  3.0	   			; the scalar value, a 64-bit floating point number
+
+negative8: .double -8.0				; can't add immediate of -8 to floating point register, so this is necessary sadly. 
+
+printfstring:  .asciiz "I should be 26: %d.\n"
+
+printfparams:  .space  8   			; space to store the address of the printfstring.
+result:	       .word64  0    			; space to store result to be printed, a 64-bit integer.                              
+
+
+
+               .text       			; start of code space
+main:   
+	       l.d f1, scalara(r0)		; puts scalar value in f7
+	
+
+	; Using r2 and r3 for 8 and for 16
+	       daddi r2, r0, 8
+	       daddi r3, r0, 16
+
+work:						; all 3 loops unrolled
+               l.d f2, vectorX(r0)	    	; loads all values right out the gate.
+               l.d f3, vectorY(r0)	
+	       mul.d f2, f2, f1	
+               l.d f4, vectorX(r2)		; using r2 and r3 to hold values 8 and 16, respectively.  
+               l.d f5, vectorY(r2)
+	       mul.d f4, f4, f1
+               l.d f6, vectorX(r3)
+               l.d f7, vectorY(r3)		; pipeline scheduled to reduce the most stalls
+	       mul.d f6, f6, f1
+	       add.d f3, f2, f3
+	       add.d f5, f4, f5
+	       add.d f7, f6, f7
+	       s.d f3, vectorY(r0)
+	       s.d f5, vectorY(r2)
+	       s.d f7, vectorY(r3)
+	
+	; all done, store answer in output register.   
+postloop:
+	       cvt.w.d f9, f7			; converts double to int
+	       dmfc1 r9, f9			; bit-per-bit copy of f9 bits into r9
+	       sd r9, result(r0)		; storing result in r9 to result space
+	       
+print:
+	       daddi r5, r0, printfstring  	; r5 now holds address of string to print
+
+	       sd r5, printfparams(r0)     	; put address first in parameters section
+	       daddi r14, r0, printfparams	; syscall 5 expects address of parameters in r14.
+
+               syscall 5
+
+	; stop execution.
+               syscall 0                           
