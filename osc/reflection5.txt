@@ -1,0 +1,12 @@
+Matt McDade
+Operating Systems Concepts Weekly Reflection 5
+
+1. All those variables and expressions for utilization, waiting time etc. were interesting to finally establish and recognize how they all interact with each other in terms of creating new values like arrival rate, utilization, etc. 
+
+2. Multiple equations for utilization, and how they all come to the same conclusive value is really neat. A lot of things clicked in my head when Dr. Sastry went through and explained all of that. 
+
+3. Mutex - A data structure I wasn't aware of at all. A boolean attached to a queue, which provides a locking mecahnism to improve utilization.
+
+4. Bounded buffer problem - The diagram Dr. Sastry drew on the whiteboard helped to explain that whole problem enough for me to go from never hearing about it to completely understanding it. How the producer and consumer each go to sleep is still a little confusing to me.
+
+5. The brief talk of synchronization - Having us define it was nice and helpful for our learning experience, but I wish a more concrete definition was given so we could better understand how we'll be using the term in the class. 
