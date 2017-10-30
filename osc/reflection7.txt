@@ -1,0 +1,12 @@
+Matt McDade
+Operating Systems Concepts Weekly Reflection 7
+
+1. Banker's Algorithm - Didn't learn too much about this, but I know that it checks for deadlocks. If it's important in the future, I would love for you to go over it some more.
+
+2. Virtual Address VS Physical Address - I already knew this concept, but attaching a name to it was useful. The fact that we need a translator (mmu) is also more of an official term for some concepts with which I was already familiar. I was thinking of how IP addresses could be like physical memory and URLs are like virtual memory, and DNS servers are like the translators. If this is a wrong comparison please let me know. 
+
+3. mapping the latter addresses - Putting them in some kind of hard coded lookup table makes a lot more sense for values that don't need to be calculated, but in different scenarios like encryption, with the encrypted version being a virtual address, a lookup table would have to be massive, so just a simple function would be better. But in terms of variable names and actual address spaces, a lookup table would be much better. 
+
+4. Requirements of mapping virtual/physical addresses - I hadn't thought about it before, but requirements do make a lot of sense when mapping these. some of those requirements being the table is controlled by the OS, and that it has to be a table and not a computational rule. 
+
+5. Pages/Page frames - Again, if this is a concept we need to know really well, I would like if you went over the nitty gritty of it a bit more. The general idea I understand, but what actually goes on and what the actual difference between a "framed" and "un-framed" page looks like would be cool to know. 

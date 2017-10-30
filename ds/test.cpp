@@ -1,4 +1,6 @@
 #include <iostream>
-void main(){
-  std::cout << "I'm working!!";
+using namespace std;
+int main(){
+  cout << "I'm working!!";
+  return 0; 
 }
