@@ -1,0 +1,30 @@
+#define CmdLCD(c) WriteLCD(0, (c))
+
+// Matt McDade Homework 6
+// Embedded Systems Interfacing
+
+void ms_delay(double N) {
+    T1CON = 0x8030;
+    TMR1 = 0;
+    while(TMR1 < 62.5*N) {}
+}
+
+
+void SetCurserAtLine(int i) {
+    while(PMMODEbits.BUSY) {}
+    PMADDR = 0x0000;
+   
+    if(i == 1)
+        CmdLCD(0x80); //sets cursor to top 
+    
+    else if (i == 2)
+        CmdLCD(0xC0); //sets cursor to start of second line
+    
+    else
+        while(TMR1 < 62.5*5000) {
+            PORTA = 0xff; 
+            ms_delay(0.5); 
+            PORTA = 0; 
+            ms_delay(0.5); 
+        }
+}
