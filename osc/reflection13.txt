@@ -1,0 +1,12 @@
+Matt McDade
+Operating Systems Concepts Weekly Reflection 13
+
+1. File systems - I understand this is a concept class but i wish a little more detail would be covered of how the different file systems work and we went over more of them like ntfs and ext. The topic as a whole I think I have a fair enough grasp on and have no questions in this department
+
+2. hard disk technology - Also fairly familiar with this concept of magnetic bits resembling a 1 or a 0 being read by a mechanical head on multiple platters. Dr Sastry did a good job explaining this. 
+
+3. blocks / sectors - These were terms I had heard thrown around when talking about hard drives, but never knew they had specific meanings in relation to a hard drive. I guess it makes sense that they do. No questions here. 
+
+4. disk fragmentation - I would definitely be interested in learning some algorithms that different operating systems use to defragment drives, that seems like a very interesting topic. The overall idea of defragmenting makes sense though. 
+
+5. directories - I also guess I should have assumed this, but I never thought about how a 'directory' was stored. It being stored as a file makes perfect sense, containing addresses to it's 'contents' and being displayed to the user in a nice folder structure. I had also never thought about how security works in this way, and Dr. Sastry's explanation again made good sense. 
