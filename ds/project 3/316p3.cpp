@@ -4,6 +4,8 @@
 // Matt McDade
 // Data Structures Project 3
 // Weighted graph topological sort given input text file
+//
+// Still didn't get it to 100% work on my machine
 
 using namespace std;
 

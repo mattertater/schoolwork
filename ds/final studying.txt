@@ -1,0 +1,67 @@
+TREES:
+associated binary tree-
+
+full binary tree- every node has 2 children, and every node in the bottom layer has 0 children. completely filled in. 
+
+complete binary tree- every node 2 children except for the second to last layer. almost full
+
+tree traversals- preorder, inorder, postorder
+
+binary search tree- every left lode is less that parent, every right node is greater than parent.
+
+balanced search tree-
+
+b-tree- each node can have multiple values with branches in between values
+
+min/max heaps- tree with greatest value at top or smallest value at top
+
+
+
+SYMBOL TABLES:
+huffman trees- the weighted thing. take list used elements and make them child nodes, etc. 
+
+hash tables- apply a function to an input to get an index to put it in a table. resolution methods, ((external chaining/open addressing))
+
+
+
+GRAPHS:
+represetnations of graphs- weights, directions, etc.
+
+depth-first traversal- go as deep as possible in specific directions until you have you go back to where you first made a decision
+
+breadth-first traversal- go equally in all directions, like a dispersing gas
+
+single source shortest path- shortest algorithmic path from point a to b on a weighted graph
+
+minimum spanning tree- graph of shortest distance to all nodes on a weighted graph
+
+prim's algorithm-
+
+topological sort-
+
+
+
+SORTING:
+basic ideas for sorting methods-
+	quick sort-
+	bubble sort-
+	radix sort-	
+	merge sort-
+	counting sort-
+	bucket sort-
+
+time complexity for different sorting methods-
+	quick sort- n^2
+	bubble sort- 
+	radix sort -
+	merge sort- 
+	counting sort- 
+	bucket sort- 
+
+stable property of sorting methods-
+	quick sort-
+	bubble sort-
+	radix sort-	
+	merge sort-
+	counting sort-
+	bucket sort-

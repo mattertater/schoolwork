@@ -4,6 +4,8 @@
 #include <stack>
 #include <vector>
 
+// Code heavily based off of functions from geekforgeek.com/topological-sorting
+
 using namespace std;
 
 struct Node {
