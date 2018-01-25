@@ -1,5 +1,5 @@
 TREES:
-associated binary tree-
+associated binary tree- i still dont really know. ill take the l here.
 
 full binary tree- every node has 2 children, and every node in the bottom layer has 0 children. completely filled in. 
 
@@ -9,9 +9,9 @@ tree traversals- preorder, inorder, postorder
 
 binary search tree- every left lode is less that parent, every right node is greater than parent.
 
-balanced search tree-
+balanced search tree- search tree which has an optimized height
 
-b-tree- each node can have multiple values with branches in between values
+b-tree- balanced search tree where each node can have multiple values with branches in between values
 
 min/max heaps- tree with greatest value at top or smallest value at top
 
@@ -35,33 +35,33 @@ single source shortest path- shortest algorithmic path from point a to b on a we
 
 minimum spanning tree- graph of shortest distance to all nodes on a weighted graph
 
-prim's algorithm-
+prim's algorithm- choose any starting point, look at all edges connected to it, pick lowest weight, repeat, adding the lowest valued branch each time connected to the tree. dont choose branches that connect already paired nodes
 
-topological sort-
+topological sort- visit nodes in order, push nodes to stack when they have no unvisited neighbors. pop out stack for topological sort order
 
 
 
 SORTING:
 basic ideas for sorting methods-
-	quick sort-
-	bubble sort-
-	radix sort-	
-	merge sort-
-	counting sort-
-	bucket sort-
+	quick sort- pivot element is last element (before wall), compare to elements on it's side, splitting into 2 halves, the left side less than the pivot, the right side greater than the pivot. when moving left of the wall, switch element with the one closest to the wall, and move the wall 1 index over
+	bubble sort- start at beginning, swap it with the next index if you have to, and continue. 
+	radix sort- sort from least significat digit to MSD, using count sort each time?
+	merge sort- split into individual elements, then merge back into parent lists by comparing first indexes and increasing when element is written back to parent list
+	counting sort- make another array with size of largest element in array to be sorted, go through it and count # of each elements in array, put number in other array, then print the new array out by index with key times. 
+	bucket sort- make dictionary, sort each index using something, then append them all back
 
 time complexity for different sorting methods-
-	quick sort- n^2
-	bubble sort- 
-	radix sort -
-	merge sort- 
-	counting sort- 
-	bucket sort- 
+	quick sort- n^2, nlogn avg
+	bubble sort- n^2 
+	radix sort - nk
+	merge sort- nlogn
+	counting sort- n + k
+	bucket sort- n^2 worst, n + k avg
 
 stable property of sorting methods-
-	quick sort-
-	bubble sort-
-	radix sort-	
-	merge sort-
-	counting sort-
-	bucket sort-
+	quick sort- typically not
+	bubble sort- yes
+	radix sort- yes
+	merge sort- yes
+	counting sort- yes
+	bucket sort- yes
