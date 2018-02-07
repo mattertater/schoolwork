@@ -1,0 +1,20 @@
+Matt McDade
+Senior Design Seminar HW3
+
+Chapter 3
+
+Problem 1
+	1. Abstract- the common what vs how problem. Unless absolutely necessary, the requirement should say nothing about HOW it should be implemented, only WHAT it needs to do
+	2. Verifiable- There should be a way to measure/demonstrate that the finla product meets the requirements
+	3. Unambiguous- Each requirement should be unambiguous so you know specifically what the customer is meaning
+	4. Traceable- Requirements have to be traceable marketing requirements, because if the final product doesn't satisfy the customers needs, it won't be a good product
+
+
+Problem 3
+	a) "The TV remote control will be easy to use"
+This requirement satisfies the properties of abstract, somewhat verifyable, not very unambiguous, and it is traceable. To be better, it could include the statement "It needs to be so easy to use that my father wont have any difficulty using it"
+	b) "The robot will identify objects in its path using ultrasonic sensors" This satisfies all properties except the abstract one. Remove the part about using ultrasonic sensors and you're all good
+	c) "The car audio amplifier will be encased in aluminum and will operate in the automobile environment" In this case I think we can let the abstract property go because the customer obviously knows what he wants. Other than that, it satisfies all the other properties
+	d) "The audio amplifier wil have a total harmonic distortion that is less than 2%" This one probably doesn't satisfy the abstract property, change it to "The audio amplifier will have a total harmonic distortion that is not distinguishable by a human ear"
+	e) "The robot will be able to move at a speed of 1 foot/second in any direction" Satisfies all properties
+	f) "The system will employ smart power monitoring technology to achieve ultralow power consumption" This doesnt satisfy the abstract property, or the verifiable property. Change to "The system will have a power consumption under X watts" to satisfy all properties.
