@@ -1,0 +1,11 @@
+Matt McDade, Laverena Wienclaw, Julie Aichinger
+Computer Networks Project Proposal
+Online Multiplayer .io game
+
+Our project idea is to create an online website where people can log in with a name, and instantly be put into an online game-arena to compete against other players. A generic leaderboard would always be in view to show currently online player names with the most points, as an incentive for the player to keep playing. 
+
+We were planning on using the pixi.js library for our HTML5 canvas game programming, and node.js along with WebSockets for the networking side of it. 
+
+Ispiration for this idea comes from websites like agar.io and airma.sh
+
+After initial research, the netorking side of a project like this would be the most tricky, especially when involving WebSockets. 
