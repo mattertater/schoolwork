@@ -1,0 +1,4 @@
+command		description
+whos - look at variables in memory
+mean([matrix]) - computes average of values in matrix
+type - 
