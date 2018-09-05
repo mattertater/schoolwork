@@ -3,3 +3,7 @@ Library B&W Copier (Print Station 2) - 		130.101.90.66
 Library Color Copier (Print Station 2) - 	130.101.224.173
 Library B&W Copier (Print Station 1) - 		130.101.224.136
 Library Basement Copier -			130.101.90.233
+
+ASEC Library 1 - 				130.101.90.183
+ASEC Library 2 - 				130.101.90.59
+ASEC Library Color (Copier Room) - 		130.101.90.54
