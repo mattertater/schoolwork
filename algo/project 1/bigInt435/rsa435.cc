@@ -13,8 +13,10 @@
 
 BigUnsigned generateBigPrime() {
 
+	int iterations = 3;
 	bool prime = false;
 	BigUnsigned p;
+
 	do {
 		p = BigUnsigned(1);
 
@@ -23,13 +25,12 @@ BigUnsigned generateBigPrime() {
 			p = p * 10 + rand();
 		}
 
-		// See if it passes 50 iterations of the Fermat test
-		for (int i = 0; i < 50; i++) {
+		// See if it passes 3 iterations of the Fermat test
+		for (int i = 0; i < iterations; i++) {
 			BigInteger a = BigInteger(rand());
-			if (modexp(a, p - 1, p) != 1) {
+			if (modexp(a, p - 1, p) != 1)
 				break;
-				std::cout << "not prime trying again" << std::endl;
-			} else if (i == 49)
+			else if (i == (iterations - 1))
 				prime = true;
 		}
 
@@ -52,23 +53,26 @@ int main(){
 		std::cout << "Finding 2 big prime numbers..." << std::endl;
 
 		// Generate our big number objects
-		BigUnsigned p1 = generateBigPrime();
-		BigUnsigned p2 = generateBigPrime();
+		BigUnsigned p = generateBigPrime();
+		BigUnsigned q = generateBigPrime();
 
 		// Get differnece between current and start time
 		double duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
 
 
 		std::cout << "Took " << duration <<" seconds to find two primes:" << std::endl;
-		std::cout << "p1: " << p1 << std::endl;
-		std::cout << "p2: " << p2 << std::endl;
+		std::cout << "p: " << p << std::endl;
+		std::cout << "q: " << q << std::endl;
 
 		std::cout << "Outputting to file \"p_q.txt\"..." << std::endl;
 		std::ofstream file;
 		file.open("p_q.txt", std::ofstream::out | std::ofstream::trunc);
-		file << p1 << "\n" << p2;
+		file << p << "\n" << q;
 		file.close();
 
+		BigUnsigned n = p * q;
+
+		std::cout << "n: " << n << std::endl;
 
 	} catch(char const* err) {
 		std::cout << "The library threw an exception:\n"
