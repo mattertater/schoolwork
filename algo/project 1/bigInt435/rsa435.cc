@@ -1,84 +1,83 @@
 // You need to complete this program for a part of your first project.
 
 // Standard libraries
-#include <string>
+#include <cmath>
+#include <ctime>
 #include <fstream>
 #include <iostream>
-#include <stdlib.h> 
-#include <ctime>
-#include <cmath>
+#include <stdlib.h>
+#include <string>
 
 // 'BigIntegerLibrary.hh' includes all of the library headers.
 #include "BigIntegerLibrary.hh"
 
 BigUnsigned generateBigPrime() {
 
-	int iterations = 3;
-	bool prime = false;
-	BigUnsigned p;
+  int iterations = 3;
+  bool prime = false;
+  BigUnsigned p;
 
-	do {
-		p = BigUnsigned(1);
+  do {
+    p = BigUnsigned(1);
 
-		// 155 iterations is enough to generate a number thats around 525 bits
-		for (int i = 0; i < 155; i++) {
-			p = p * 10 + rand();
-		}
+    // 155 iterations is enough to generate a number thats around 525 bits
+    for (int i = 0; i < 155; i++) {
+      p = p * 10 + rand();
+    }
 
-		// See if it passes 3 iterations of the Fermat test
-		for (int i = 0; i < iterations; i++) {
-			BigInteger a = BigInteger(rand());
-			if (modexp(a, p - 1, p) != 1)
-				break;
-			else if (i == (iterations - 1))
-				prime = true;
-		}
+    // See if it passes 3 iterations of the Fermat test
+    for (int i = 0; i < iterations; i++) {
+      // pick randomm a between 2 and 12
+      int a = (rand() % 10) + 2;
+      if (modexp(a, p - 1, p) != 1)
+        break;
+      else if (i == (iterations - 1))
+        prime = true;
+    }
 
-	} while (!prime);
+  } while (!prime);
 
-	return p;
+  return p;
 }
 
-int main(){
-	srand(time(NULL));
-	/* The library throws 'const char *' error messages when things go
-	* wrong.  It's a good idea to catch them using a 'try' block like this
-	* one.  Your C++ compiler might need a command-line option to compile
-	* code that uses exceptions. */
-	try {
-		
-		// Get current time
-		std::clock_t start = std::clock();
+int main() {
+  srand(time(NULL));
+  /* The library throws 'const char *' error messages when things go
+   * wrong.  It's a good idea to catch them using a 'try' block like this
+   * one.  Your C++ compiler might need a command-line option to compile
+   * code that uses exceptions. */
+  try {
 
-		std::cout << "Finding 2 big prime numbers..." << std::endl;
+    // Get current time
+    std::clock_t start = std::clock();
 
-		// Generate our big number objects
-		BigUnsigned p = generateBigPrime();
-		BigUnsigned q = generateBigPrime();
+    std::cout << "Finding 2 big prime numbers..." << std::endl;
 
-		// Get differnece between current and start time
-		double duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
+    // Generate our big number objects
+    BigUnsigned p = generateBigPrime();
+    BigUnsigned q = generateBigPrime();
 
+    // Get differnece between current and start time
+    double duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
 
-		std::cout << "Took " << duration <<" seconds to find two primes:" << std::endl;
-		std::cout << "p: " << p << std::endl;
-		std::cout << "q: " << q << std::endl;
+    std::cout << "Took " << duration
+              << " seconds to find two primes:" << std::endl;
+    std::cout << "p: " << p << std::endl;
+    std::cout << "q: " << q << std::endl;
 
-		std::cout << "Outputting to file \"p_q.txt\"..." << std::endl;
-		std::ofstream file;
-		file.open("p_q.txt", std::ofstream::out | std::ofstream::trunc);
-		file << p << "\n" << q;
-		file.close();
+    std::cout << "Outputting to file \"p_q.txt\"..." << std::endl;
+    std::ofstream file;
+    file.open("p_q.txt", std::ofstream::out | std::ofstream::trunc);
+    file << p << "\n" << q;
+    file.close();
 
-		BigUnsigned n = p * q;
+    BigUnsigned n = p * q;
 
-		std::cout << "n: " << n << std::endl;
+    std::cout << "n: " << n << std::endl;
 
-	} catch(char const* err) {
-		std::cout << "The library threw an exception:\n"
-		<< err << std::endl;
-	}
+  } catch (char const *err) {
+    std::cout << "The library threw an exception:\n" << err << std::endl;
+  }
 
-	return 0;
+  return 0;
 }
-
