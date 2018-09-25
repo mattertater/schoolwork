@@ -46,13 +46,16 @@ testsuite-cleanfiles = \
 	testsuite.out testsuite.err
 
 # The rules below build a program that uses the library.  They are preset to
-# build ``messageDigest435'' from ``messageDigest435.cpp''.  You can change the name(s) of the
+# build ``sign'' from ``sign.cpp''.  You can change the name(s) of the
 # source file(s) and program file to build your own program, or you can write
 # your own Makefile.
 
 # Components of the program.
-program = messageDigest435
-program-objects = messageDigest435.o
+program = sign
+program-objects = sign.o
+program-outputs = \
+	file.txt.signature \
+	sign.exe
 
 # Conservatively assume all the program source files depend on all the library
 # headers.  You can change this if it is not the case.
@@ -64,7 +67,7 @@ $(program) : $(program-objects) $(library-objects)
 
 # Delete all generated files we know about.
 clean :
-	rm -f $(library-objects) $(testsuite-cleanfiles) $(program-objects) $(program)
+	rm -f $(library-objects) $(testsuite-cleanfiles) $(program-objects) $(program) $(program-outputs)
 
 # I removed the *.tag dependency tracking system because it had few advantages
 # over manually entering all the dependencies.  If there were a portable,
