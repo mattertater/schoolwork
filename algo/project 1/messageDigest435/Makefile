@@ -3,7 +3,7 @@ all:
 
 # Implicit rule to compile C++ files.  Modify to your taste.
 %.o: %.cc
-	g++ -std=c++11 -c -O2 -Wall -Wextra -pedantic $<
+	g++ -c -O2 -Wall -Wextra -pedantic $<
 
 # Components of the library.
 library-objects = \
@@ -12,6 +12,7 @@ library-objects = \
 	BigIntegerAlgorithms.o \
 	BigUnsignedInABase.o \
 	BigIntegerUtils.o \
+   sha256.o\
 
 library-headers = \
 	NumberlikeArray.hh \
@@ -20,6 +21,7 @@ library-headers = \
 	BigIntegerAlgorithms.hh \
 	BigUnsignedInABase.hh \
 	BigIntegerLibrary.hh \
+   sha256.h\
 
 # To ``make the library'', make all its objects using the implicit rule.
 library: $(library-objects)
@@ -44,17 +46,13 @@ testsuite-cleanfiles = \
 	testsuite.out testsuite.err
 
 # The rules below build a program that uses the library.  They are preset to
-# build ``rsa435'' from ``rsa435.cpp''.  You can change the name(s) of the
+# build ``messageDigest435'' from ``messageDigest435.cpp''.  You can change the name(s) of the
 # source file(s) and program file to build your own program, or you can write
 # your own Makefile.
 
 # Components of the program.
-program = rsa435
-program-objects = rsa435.o
-text-files = \
-	p_q.txt \
-	e_n.txt \
-	d_n.txt \
+program = messageDigest435
+program-objects = messageDigest435.o
 
 # Conservatively assume all the program source files depend on all the library
 # headers.  You can change this if it is not the case.
@@ -66,7 +64,7 @@ $(program) : $(program-objects) $(library-objects)
 
 # Delete all generated files we know about.
 clean :
-	rm -f $(library-objects) $(testsuite-cleanfiles) $(program-objects) $(program) $(text-files)
+	rm -f $(library-objects) $(testsuite-cleanfiles) $(program-objects) $(program)
 
 # I removed the *.tag dependency tracking system because it had few advantages
 # over manually entering all the dependencies.  If there were a portable,
