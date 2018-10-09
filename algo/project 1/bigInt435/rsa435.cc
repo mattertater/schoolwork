@@ -2,12 +2,9 @@
 // Algorithms Project 1
 // Part 1
 
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Added "-std=c++11" to makefile command
 //        to get tuples to work
-// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-// Standard libraries
 #include <cmath>
 #include <ctime>
 #include <fstream>
@@ -65,7 +62,6 @@ std::tuple<BigInteger, BigInteger, BigInteger> eea(BigUnsigned a,
 int main() {
   srand(time(NULL));
   try {
-
     // Get current time
     std::clock_t start = std::clock();
 
@@ -114,7 +110,6 @@ int main() {
     }
 
     duration = (std::clock() - start) / (double)CLOCKS_PER_SEC;
-
     std::cout << "Took " << duration
               << " seconds to find e and d:" << std::endl;
     std::cout << "e: " << e << std::endl;

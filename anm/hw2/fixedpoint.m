@@ -10,5 +10,4 @@ for k=1:maxiter
     end
     xk = xkplus1;
 end   
-disp('root not found')
-c = 0;
+c = xkplus1;
