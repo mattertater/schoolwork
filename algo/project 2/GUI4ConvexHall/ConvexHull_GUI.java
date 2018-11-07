@@ -124,6 +124,9 @@ public class ConvexHull_GUI extends JPanel
          g.drawOval(x0,y0,r,r);
          
          int x1=x0, y1=y0;
+
+         Graphics2D g2 = (Graphics2D) g;
+         g2.setStroke(new BasicStroke(3));
          for (int i=1; i<convexHull.size(); i++) {
             int x=convexHull.get(i).x, y=convexHull.get(i).y;
             //scale the location of the point
@@ -133,10 +136,10 @@ public class ConvexHull_GUI extends JPanel
                y = (convexHull.get(i).y-maxmin[1].y)*(getHeight()-2*r)/(maxmin[0].y-maxmin[1].y)+r/2;   
             
             g.drawOval(x,y,r,r); 
-            g.drawLine(x1+r/2, y1+r/2, x+r/2, y+r/2);
+            g2.drawLine(x1+r/2, y1+r/2, x+r/2, y+r/2);
             x1=x; y1=y;
          }
-         g.drawLine(x0+r/2, y0+r/2, x1+r/2, y1+r/2);
+         g2.drawLine(x0+r/2, y0+r/2, x1+r/2, y1+r/2);
       }
    }
    public void testFileGen(String testFileName, String type, int nPoints) {
