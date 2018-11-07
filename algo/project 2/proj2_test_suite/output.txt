@@ -1,0 +1,60 @@
+Graham scan on circle10.txt took 1 ms
+Graham scan on circle1000.txt took 3 ms
+Graham scan on circle10000.txt took 5 ms
+Graham scan on circle100000.txt took 56 ms
+Graham scan on circle1000000.txt took 578 ms
+Jarvis's March on circle10.txt took 2 ms
+Jarvis's March on circle1000.txt took 2 ms
+Jarvis's March on circle10000.txt took 6 ms
+Jarvis's March on circle100000.txt took 86 ms
+Jarvis's March on circle1000000.txt took 1163 ms
+Quickhull on circle10.txt took 1 ms
+Quickhull on circle1000.txt took 4 ms
+Quickhull on circle10000.txt took 29 ms
+Quickhull on circle100000.txt took 422 ms
+Quickhull on circle1000000.txt took 6398 ms
+Graham scan on onCircle10.txt took 3 ms
+Graham scan on onCircle1000.txt took 2 ms
+Graham scan on onCircle10000.txt took 6 ms
+Graham scan on onCircle100000.txt took 110 ms
+Graham scan on onCircle1000000.txt took 7992 ms
+Jarvis's March on onCircle10.txt took 1 ms
+Jarvis's March on onCircle1000.txt took 6 ms
+Jarvis's March on onCircle10000.txt took 31 ms
+Jarvis's March on onCircle100000.txt took 292 ms
+Jarvis's March on onCircle1000000.txt took 3152 ms
+Quickhull on onCircle10.txt took 1 ms
+Quickhull on onCircle1000.txt took 13 ms
+Quickhull on onCircle10000.txt took 112 ms
+Quickhull on onCircle100000.txt took 1051 ms
+Quickhull on onCircle1000000.txt took 12216 ms
+Graham scan on triangle10.txt took 2 ms
+Graham scan on triangle1000.txt took 3 ms
+Graham scan on triangle10000.txt took 7 ms
+Graham scan on triangle100000.txt took 54 ms
+Graham scan on triangle1000000.txt took 765 ms
+Jarvis's March on triangle10.txt took 1 ms
+Jarvis's March on triangle1000.txt took 2 ms
+Jarvis's March on triangle10000.txt took 2 ms
+Jarvis's March on triangle100000.txt took 23 ms
+Jarvis's March on triangle1000000.txt took 229 ms
+Quickhull on triangle10.txt took 2 ms
+Quickhull on triangle1000.txt took 3 ms
+Quickhull on triangle10000.txt took 14 ms
+Quickhull on triangle100000.txt took 61 ms
+Quickhull on triangle1000000.txt took 186 ms
+Graham scan on rectangle10.txt took 1 ms
+Graham scan on rectangle1000.txt took 2 ms
+Graham scan on rectangle10000.txt took 7 ms
+Graham scan on rectangle100000.txt took 61 ms
+Graham scan on rectangle1000000.txt took 1192 ms
+Jarvis's March on rectangle10.txt took 2 ms
+Jarvis's March on rectangle1000.txt took 2 ms
+Jarvis's March on rectangle10000.txt took 7 ms
+Jarvis's March on rectangle100000.txt took 49 ms
+Jarvis's March on rectangle1000000.txt took 435 ms
+Quickhull on rectangle10.txt took 1 ms
+Quickhull on rectangle1000.txt took 3 ms
+Quickhull on rectangle10000.txt took 14 ms
+Quickhull on rectangle100000.txt took 80 ms
+Quickhull on rectangle1000000.txt took 501 ms
