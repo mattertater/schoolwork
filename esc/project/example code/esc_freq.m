@@ -21,6 +21,7 @@ xlabel('\Omega (rad/sample)')
 ylabel('arg(H(e^{i\Omega}))')
 set(gca,'fontsize',16)
 
+
 % Create the frequency response plots for semilog Omega (discrete-time
 % frequency with the magnitude (dB) and phase (deg)
 

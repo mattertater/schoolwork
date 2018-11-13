@@ -1,0 +1,75 @@
+psuedo code for smart parking deck
+matt mcdade
+
+--------------------------------------------------
+SENSOR (MODULE)CODE
+// uses zigbee API mode wihch handles timing of 
+// multiple packets trying to be sent at the same time
+
+address = uniqueAddress;
+destination = destinationAddress;
+
+// main function is called once initially, then on an interval
+function loop()
+	// come out of low power mode
+	exitLowPowerMode()
+	fullOrNot = isSpaceFull()
+	sendDataPacket(fullOrNot)
+
+	// run either every 15 minutes or every 30 seconds
+	if getTime() is after midnight && getTime() is before 6am
+		setInterval(loop, 15 minutes)
+	else
+		setInterval(loop, 0.5 minutes) 
+
+	// enter low power mode when not doing anything
+	enterLowPowerMode()
+
+// check proximity sensor data and return if space is full or not
+function isSpaceFull()
+	enableProxSensor()
+	distance = getSensorDistance()
+	disableProxSensor()
+	if distance < 2 meters
+		return true
+	return false
+
+// send data packet to hardcoded receiver with data fullOrNot
+function sendDataPacket(fullOrNot)
+	dataPacket = {destination, address, fullOrNot}
+	enableZigbee()
+	while (!receiverReady) {}
+	zigbeeTransmit(dataPacket)
+	disableZigbee()
+
+
+--------------------------------------------------
+
+RECEIVER (HUB) CODE
+
+localData = hash table of spots and whether theyre full or not
+
+// run this whenever data has been received
+onPacketReceive(incomingData)
+	forwardToInternetDatabase(incomingData)
+	spotAddress = incomingData.address
+	data = incomingData.fullOrNot
+	localData[address] = data
+	displaySpots()
+
+displaySpots()
+	// creates text to output absed on localData
+	
+---------------------------------------------------
+
+MOBILE APP CODE
+
+onOpen()
+	getDataFromDatabase()
+	showDeckListView()
+
+onParkingDeckSelect()
+	showSingleDeckView()
+
+onRefresh()
+	getDataFromDatabase()

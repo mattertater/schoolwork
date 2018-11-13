@@ -1,0 +1,76 @@
+clc;
+clear all;
+close all;
+
+w = 1643.838;
+t = .1;
+m = 16.001616040804 * w .^4;
+
+OmegaCont=linspace(0,pi,10001); % Omega for cont
+OmegaDisc=linspace(0,pi,w); % Omega for discrete
+
+% Continuous
+s=exp(i*OmegaCont);
+num = m;
+den1 = (s.^2 + 0.7654*s*w + 1.0000505* w.^2);
+den2 = (s.^2 + 1.8478*s*w + 1.0000505* w.^2);
+den = den1 .* den2;
+Hc = num ./ den;
+
+figure(1)
+subplot(211)
+semilogx(OmegaCont,20*log10(abs(Hc)))
+xlabel('\Omega (rad/sample)')
+ylabel('magnitude (dB)')
+subplot(212)
+semilogx(OmegaCont,angle(Hc)*180/pi)
+xlabel('\Omega (rad/sample)')
+ylabel('phase (deg)')
+
+
+% Discrete
+z = exp(1i*OmegaDisc);
+s = ((z-1)/t);
+% den1 = (s.^2 + 0.7654*s*w + 1.0000505* w.^2);
+den1 = 100*z.^2 + 12381.9*z + 2.68986 * 10^6;
+% den2 = (s.^2 + 1.8478*s*w + 1.0000505* w.^2);
+den2 = 100*z.^2 + 30174.8*z + 2.68986 * 10^6;
+den = den1 .* den2;
+Hd = tf([],[])
+Hd = num ./ den;
+
+figure(2)
+subplot(211)
+semilogx(OmegaDisc,20*log10(abs(Hd)))
+xlabel('\Omega (rad/sample)')
+ylabel('magnitude (dB)')
+subplot(212)
+semilogx(OmegaDisc,angle(Hd)*180/pi)
+xlabel('\Omega (rad/sample)')
+ylabel('phase (deg)')
+
+
+% Discrete approximation
+z = exp(1i*OmegaDisc);
+num = (t.^4) * m;
+den1 = (z.^2 + 339828979.15625*z - 339828980.15625);
+den2 = (z.^2 + 820831359.265625*z - 820831360.265625);
+den = den1 .* den2;
+Hda = approximate(Hd, 6)
+
+figure(3)
+subplot(211)
+semilogx(OmegaDisc,20*log10(abs(Hda)))
+xlabel('\Omega (rad/sample)')
+ylabel('magnitude (dB)')
+subplot(212)
+semilogx(OmegaDisc,angle(Hda)*180/pi)
+xlabel('\Omega (rad/sample)')
+ylabel('phase (deg)')
+
+
+% n= [0 0 0 0 m];
+% d= [1 2.6132*w 3.41440712*w.^2 2.61333196*w.^3 1.000101*w.^4];
+% %tf([0 0 0 0 m] , [1 2.6132*w 3.41440712*w.^2 2.61333196*w.^3 1.000101*w.^4])
+% freqs(n ,d , Omega1);
+% hc1= freqs(n,d, Omega1);
