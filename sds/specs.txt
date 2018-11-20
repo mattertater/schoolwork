@@ -1,0 +1,17 @@
+VL53L0X TOF Distance Sensor - https://www.pololu.com/product/2490
+	power: (peak current of 40mA)
+ATmega328PB - 3.3V 8MHz - https://www.pololu.com/product/3162/resources
+	power: 
+		active: 0.24 mA
+		power-down mode: 0.2 uA
+		power-save: 1.3uA
+XB3-24Z8PT-J - https://www.mouser.com/ProductDetail/Digi-International/XB3-24Z8PT-J?qs=sGAEpiMZZMve4%2fbfQkoj%252bHnv3ft0YYh1ZelV1uOq7SE%3d
+	power: 
+		transmitting: 40mA
+		receiving: 15mA
+2200mAh battery?
+
+40mA + 40mA + 0.24mA = 80.24mA max power draw for 1-2 seconds every 30 seconds
+30 seconds of every hour is 1/120
+2200 mAh / 80.24mA = 27.418 hours with constant 80.24mA draw
+we're only using 1/120 of that, so 27.418 * 120 = 3290 hours ~ 120 days
