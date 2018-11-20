@@ -10,6 +10,8 @@
 #include <vector>
 #include <utility>
 #include <algorithm>
+#include <ctime>
+#include <bits/stdc++.h>
 
 std::vector<std::vector<int> > createVector(int width, int height) {
     std::vector<std::vector<int> > a;
@@ -20,7 +22,7 @@ std::vector<std::vector<int> > createVector(int width, int height) {
     return a;
 }
 
-std::vector<std::vector<int> > transpose(std::vector<std::vector<int> > matrix) {
+std::vector<std::vector<int> > transpose(std::vector<std::vector<int> > &matrix) {
     int width = matrix[0].size();
     int height = matrix.size();
     std::vector<std::vector<int> > transposedMatrix = createVector(height, width);
@@ -30,7 +32,7 @@ std::vector<std::vector<int> > transpose(std::vector<std::vector<int> > matrix) 
     return transposedMatrix;
 }
 
-void printMatrix(std::vector<std::vector<int> > matrix, std::string name) {
+void printMatrix(std::vector<std::vector<int> > &matrix, std::string name) {
     int height = matrix.size();
     int width = matrix[0].size();
     std::cout << name << std::endl;
@@ -44,8 +46,9 @@ void printMatrix(std::vector<std::vector<int> > matrix, std::string name) {
 }
 
 // Returns the value of the cell with the least value of the 3 above the given i, j
-int minFromAbove(std::vector<std::vector<int> > cumulative, int i, int j) {
-    int min= INT_MAX;
+int minFromAbove(std::vector<std::vector<int> > &cumulative, int i, int j) {
+    int min = INT_MAX;
+
     if (j != 0)
         min = cumulative[i-1][j-1];
     if (cumulative[i-1][j] < min)
@@ -53,11 +56,12 @@ int minFromAbove(std::vector<std::vector<int> > cumulative, int i, int j) {
     if (j != cumulative[i].size() - 1)
         if (cumulative[i-1][j+1] < min)
             min = cumulative[i-1][j+1];
+    
     return min;
 }
 
 // Returns the coordinates in the cumulative energy matrix of the least of the 3 entries above the number at i, j
-std::pair<int, int> minCoodsFromAbove(std::vector<std::vector<int> > cumulative, int i, int j) {
+std::pair<int, int> minCoodsFromAbove(std::vector<std::vector<int> > &cumulative, int i, int j) {
     std::pair<int, int> min;
     min.first = i - 1;
     // There will always be an element above this one, so default min j to it just in case
@@ -74,7 +78,7 @@ std::pair<int, int> minCoodsFromAbove(std::vector<std::vector<int> > cumulative,
 }
 
 // Returns the coordinates in the cumulative energy matrix of the minimum value in one row
-std::pair<int, int> minCoords(std::vector<std::vector<int> > cumulative, int i) {
+std::pair<int, int> minCoords(std::vector<std::vector<int> > &cumulative, int i) {
     std::pair<int, int> min;
     min.first = i;
     min.second = 0;
@@ -86,7 +90,7 @@ std::pair<int, int> minCoords(std::vector<std::vector<int> > cumulative, int i) 
 }
 
 // Calculate the energy matrix
-std::vector<std::vector<int> > calculateEnergyMatrix(std::vector<std::vector<int> > matrix) {
+std::vector<std::vector<int> > calculateEnergyMatrix(std::vector<std::vector<int> > &matrix) {
     int height = matrix.size();
     int width = matrix[0].size();
     std::vector<std::vector<int> > energyMatrix = createVector(width, height);
@@ -114,16 +118,19 @@ std::vector<std::vector<int> > calculateEnergyMatrix(std::vector<std::vector<int
 
 // Calculate cumulative matrix
 // TODO: investigate time sink, make it faster
-std::vector<std::vector<int> > calculateCumulativeMatrix(std::vector<std::vector<int> > energyMatrix) {
+std::vector<std::vector<int> > calculateCumulativeMatrix(std::vector<std::vector<int> > &energyMatrix) {
+
     int height = energyMatrix.size();
     int width = energyMatrix[0].size();
     std::vector<std::vector<int> > cumulativeMatrix = createVector(width, height);
+
     for (int i = 0; i < height; i++) {
         for (int j = 0; j < width; j++) {
-            if (i == 0) 
-                cumulativeMatrix[i][j] = energyMatrix[i][j];                
+            if (i == 0) {
+                cumulativeMatrix[i][j] = energyMatrix[i][j];  
+            }
             else {
-                cumulativeMatrix[i][j] = energyMatrix[i][j] + minFromAbove(cumulativeMatrix, i, j);
+                cumulativeMatrix[i][j] = energyMatrix[i][j] + minFromAbove(cumulativeMatrix, i, j);     
             }
         }
     }
@@ -132,7 +139,7 @@ std::vector<std::vector<int> > calculateCumulativeMatrix(std::vector<std::vector
 }
 
 // Trace up from bottom and find the path of the lowest numbers
-std::vector<std::pair<int, int> > findMinPath(std::vector<std::vector<int> > cumulativeMatrix) {
+std::vector<std::pair<int, int> > findMinPath(std::vector<std::vector<int> > &cumulativeMatrix) {
     int height = cumulativeMatrix.size();
     std::vector<std::pair<int, int> > path;
     path.push_back(minCoords(cumulativeMatrix, height - 1));
@@ -143,13 +150,13 @@ std::vector<std::pair<int, int> > findMinPath(std::vector<std::vector<int> > cum
 }
 
 // Removes the elements specified in the minPath
-std::vector<std::vector<int> > removeMinPath(std::vector<std::vector<int> > matrix, std::vector<std::pair<int, int> > minPath) {
+void removeMinPath(std::vector<std::vector<int> > &matrix, std::vector<std::pair<int, int> > &minPath) {
     for (int i = 0; i < minPath.size(); i++)
         matrix[minPath[i].first].erase(matrix[minPath[i].first].begin() + minPath[i].second);
-    return matrix;
+
 }
 
-std::vector<std::vector<int> > removeSeams(std::vector<std::vector<int> > matrix, int seams) {
+std::vector<std::vector<int> > removeSeams(std::vector<std::vector<int> > &matrix, int seams) {
     std::vector<std::vector<int> > energyMatrix, cumulativeMatrix;
     std::vector<std::pair<int, int> > minPath;
 
@@ -158,9 +165,8 @@ std::vector<std::vector<int> > removeSeams(std::vector<std::vector<int> > matrix
         energyMatrix = calculateEnergyMatrix(matrix);
         cumulativeMatrix = calculateCumulativeMatrix(energyMatrix);
         minPath = findMinPath(cumulativeMatrix);
-        matrix = removeMinPath(matrix, minPath);
+        removeMinPath(matrix, minPath);
     }
-
 
     return matrix;
 }
