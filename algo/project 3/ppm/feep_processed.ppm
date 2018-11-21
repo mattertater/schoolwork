@@ -1,0 +1,6 @@
+P3
+# Output after removing 0 vertical and 2 seams from ppm\feep.ppm
+4 2
+15
+0 0 0 0 15 7 0 0 0 15 0 15 
+15 0 15 0 0 0 0 15 7 0 0 0 
