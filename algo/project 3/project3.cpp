@@ -13,9 +13,14 @@
 #include <ctime>
 #include <bits/stdc++.h>
 
+// Custom object to hold RGB values of .ppm files
 struct Pixel {
     int R, G, B;
 };
+
+// -----------------
+// UTILITY FUNCTIONS
+// -----------------
 
 // Size the matrix correctly based on input image width and height
 void populateVector(std::vector<std::vector<int> > &matrix, int width, int height) {
@@ -24,7 +29,6 @@ void populateVector(std::vector<std::vector<int> > &matrix, int width, int heigh
         matrix[i].resize(width);
     }
 }
-
 // Overload to handle Pixel mamtrices
 void populateVector(std::vector<std::vector<Pixel> > &matrix, int width, int height) {
     matrix.resize(height);
@@ -37,6 +41,7 @@ void populateVector(std::vector<std::vector<Pixel> > &matrix, int width, int hei
 std::vector<std::vector<int> > transpose(std::vector<std::vector<int> > &matrix) {
     int width = matrix[0].size();
     int height = matrix.size();
+
     std::vector<std::vector<int> > transposedMatrix;
     populateVector(transposedMatrix, height, width);
     for (int i = 0; i < height; i++)
@@ -44,7 +49,6 @@ std::vector<std::vector<int> > transpose(std::vector<std::vector<int> > &matrix)
             transposedMatrix[j][i] = matrix[i][j];
     return transposedMatrix;
 }
-
 // Overload to handle Pixel matrices
 std::vector<std::vector<Pixel> > transpose(std::vector<std::vector<Pixel> > &matrix) {
     int width = matrix[0].size();
@@ -71,6 +75,23 @@ void printMatrix(std::vector<std::vector<int> > &matrix, std::string name) {
     }
     std::cout << std::endl;
 }
+// Overload to print out Pixel matrices
+void printMatrix(std::vector<std::vector<Pixel> > &matrix, std::string name) {
+    int height = matrix.size();
+    int width = matrix[0].size();
+    std::cout << name << std::endl;
+    for (int i = 0; i < height; i++) {
+        for (int j = 0; j < width; j++) {
+            std::cout << "(" << matrix[i][j].R << ", " << matrix[i][j].G << ", " << matrix[i][j].B << ") ";
+        }
+        std::cout << std::endl;
+    }
+    std::cout << std::endl;
+}
+
+// -------------------------
+// MINIMUM FINDING FUNCTIONS
+// -------------------------
 
 // Returns the value of the cell with the least value of the 3 above the given i, j
 int minFromAbove(std::vector<std::vector<int> > &cumulative, int i, int j) {
@@ -115,6 +136,10 @@ std::pair<int, int> minCoords(std::vector<std::vector<int> > &cumulative, int i)
 
     return min;
 }
+
+// ----------------------------
+// MATRIX CALCULATION FUNCTIONS
+// ----------------------------
 
 // Calculate the energy matrix
 std::vector<std::vector<int> > calculateEnergyMatrix(std::vector<std::vector<int> > &matrix) {
@@ -253,9 +278,8 @@ void removeSeams(std::vector<std::vector<Pixel> > &matrix, int seams) {
 
 int main(int argc, char*argv[]) {
 
-    if (argc < 4) {
+    if (argc < 4)
         std::cout << "Incorrect format: should be \"a.exe [image.pgm/image.ppm] [vertical seams] [horizontal seams]\"" << std::endl;
-    }
     else {
         int width = 0, height = 0, maxVal = 0;
         std::vector<std::vector<int> > pgm;
@@ -287,10 +311,10 @@ int main(int argc, char*argv[]) {
         if (file.is_open()) {
             std::string chunk;
             int count = 0;
-            // get first 3 lines, p-number, width/height, and max greyscale val
+            // get first 3 values, p-number, width/height, and max greyscale val
             while (maxVal == 0) {
                 file >> chunk;
-                // if encounter a '#', thn skip the rest of the line
+                // if encounter a '#', then skip the rest of the line
                 if (chunk[0] == '#') {
                     continue;
                     std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
@@ -304,7 +328,7 @@ int main(int argc, char*argv[]) {
                 else myChunk >> maxVal;
             }
 
-            if (p_value == "pgm") {
+            if (p_value == "P2") {
                 // make 2d array of size gotten from top of pgm file
                 populateVector(pgm, width, height);
                 // fill the array
@@ -346,7 +370,8 @@ int main(int argc, char*argv[]) {
         if (maxVal != 0) {
             file.close();
 
-            if (p_value == "pgm") {
+            if (p_value == "P2") {
+
                 // set pgm to the output of removing all the vertical seams
                 removeSeams(pgm, vertical);
 

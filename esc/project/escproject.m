@@ -3,15 +3,15 @@ clear all;
 close all;
 
 w = 1643.838;
-t = .1;
-m = 16.001616040804 * w .^4 
+t = .0005;
+m = 16.001616040804 * w .^4 ;
 
 
-OmegaCont=linspace(0,2*pi,10001); % Omega for cont
-OmegaDisc=linspace(0,2*pi,w); % Omega for discrete
+OmegaCont=linspace(0,2000*pi,10001); % Omega for cont
+OmegaDisc=linspace(0,pi,w); % Omega for discrete
 
 % Continuous
-s=exp(1i*OmegaCont);
+s = 1i * OmegaCont;
 num = m;
 den1 = (s.^2 + 0.7654*s*w + 1.0000505* w.^2);
 den2 = (s.^2 + 1.8478*s*w + 1.0000505* w.^2);
@@ -32,7 +32,7 @@ ylabel('phase (deg)')
 
 % Discrete
 z = exp(1i*OmegaDisc);
-s = ((z-1)/t);
+s = log(z)/t;
 den1 = (s.^2 + 0.7654*s*w + 1.0000505* w.^2);
 den2 = (s.^2 + 1.8478*s*w + 1.0000505* w.^2);
 den = den1 .* den2;
@@ -51,20 +51,22 @@ ylabel('phase (deg)')
 
 
 % Discrete approximation
+% t and w already plugged in
+
 z = exp(1i*OmegaDisc);
-num = (t.^4) * m;
-den1 = (z.^2 + 339828979.15625*z - 339828980.15625); % 36 bits, 6 f
-den2 = (z.^2 + 820831359.265625*z - 820831360.265625); % 37 bits, 6 f
+num = ((z + 1).^4) * 0.15955904;
+den1 = (z.^2 - 1.125.*z + 0.5625);
+den2 = (z.^2 - 0.875.*z + 0.21875);
 den = den1 .* den2;
 Hda = num ./ den;
 
 % Plot discrete approximation
 figure(3)
-subplot(211)
+subplot(211)    
 semilogx(OmegaDisc,20*log10(abs(Hda)))
 xlabel('\Omega (rad/sample)')
 ylabel('magnitude (dB)')
 subplot(212)
 semilogx(OmegaDisc,angle(Hda)*180/pi)
 xlabel('\Omega (rad/sample)')
-ylabel('phase (deg)')
+ylabel('hase (deg)')

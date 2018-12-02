@@ -6,3 +6,4 @@ tol = 1e-10;
 maxiter = 100;
 [s, k] = jacobi(a, b, [0; 0; 0], tol, maxiter)
 [s, k] = jacobi(a, b, [10; 20; -30], tol, maxiter)
+
