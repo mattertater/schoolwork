@@ -9,3 +9,4 @@ ASEC Library 2 - 				130.101.90.59
 ASEC Library Color (Copier Room) - 		130.101.90.54
 
 Law Hallway Printer- 				10.20.20.97
+Union Docuzip
