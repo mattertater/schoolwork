@@ -1,0 +1,9 @@
+Matt McDade
+System Simulation
+Final Exam Problem 5D
+
+In the first scenario, Belle seems rather disgusted with the beast and her feelings towards her only decrease as time goes on. The beast has an initial spike of hope, but then stays just slightly above 0 for the rest of the time, still showing feelings for Belle, but not increasing or decresing due to Belle's disinterest
+
+In the second scenario, The beginning is the same, until a point where Belle's feelings start to increase again for the beast, before staying stagnant at a point that is still negative. The beast's feelings curve is identical to that of the first scenario. 
+
+In the third and most romantic scenario, Belle's feelings dont stagnate, but instead continue to increase. As soon as the beast sees Belle's feelings for him increase below a point of about -2 or -1, his feelings towards her begin to shoot up. This makes a pretty great love story, as the beast's feelings for Belle shoot past 10, which is a significant love level. 
