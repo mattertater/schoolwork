@@ -56,6 +56,7 @@ end
 
 % Plot poles for part D
 subplot(121)
+grid on; grid minor
 hold on
 plot(-0.147597,   0.38759,  'X')
 plot(-0.147597,  -0.38759,  'X')

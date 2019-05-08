@@ -1,0 +1,19 @@
+% Matt McDade
+% ANM 2
+% Homework 9 Part 1
+
+dx = 1e-2;  x = 0:dx:10;
+dt = 1e-4;  t = 0:dt:2;
+
+
+N = length(x);
+nmax = length(t);
+np = (nmax-1)/1000;
+
+u2 = zeros(N,2);
+
+a = 4;
+f = @(t) sin(10*t); % BC
+g = @(x) exp(-50*(x-4).^2); % IC
+
+R = a*dt/dx
