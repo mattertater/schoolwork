@@ -18,6 +18,7 @@ iter = 1;
 
 while(iter < itermax && error > tol)
     error = 0;
+    
     for i = 2:imax-1
         for j = 2:jmax-1
             T = D*((u(i-1,j)+u(i+1,j))/dx^2+(u(i,j-1)+u(i,j+1))/dy^2) ...
@@ -29,7 +30,7 @@ while(iter < itermax && error > tol)
         end
     end
     
-    fprintf('%d: %e\n', iter, error)
+    %fprintf('%d: %e\n', iter, error)
     if (mod(iter, 10) == 0)
         mesh(x, y, u')
         drawnow
